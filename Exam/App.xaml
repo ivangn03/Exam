@@ -3,11 +3,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:Exam"
              xmlns:locator="clr-namespace:Exam.Infrastucture"
-             StartupUri="Views/MainView.xaml"
              >
     <Application.Resources>
         <ResourceDictionary>
-            <locator:ViewModelLocator x:Key="vmlocator"></locator:ViewModelLocator>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Light.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />

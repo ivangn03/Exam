@@ -15,7 +15,7 @@
      TextOptions.TextRenderingMode="Auto"
      Background="{DynamicResource MaterialDesignPaper}"
      FontFamily="{DynamicResource MaterialDesignFont}"
-        DataContext="{Binding Source={StaticResource vmlocator}, Path=MainViewModel}"
+       
         >
 
     <i:Interaction.Triggers>
@@ -27,7 +27,7 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="0.94*"></ColumnDefinition>
             <ColumnDefinition Width="6*"></ColumnDefinition>
-            <ColumnDefinition Width="2*"></ColumnDefinition>
+
         </Grid.ColumnDefinitions>
         <ListBox Grid.Column="1" ItemsSource="{Binding FrameworkUIModels}" SelectedItem="{Binding SelectedItem}">
             <ListBox.ItemTemplate>
@@ -53,7 +53,7 @@
                                     <Label>Name: </Label>
                                     <Label Grid.Column="1" HorizontalAlignment="Right" Content="{Binding Name}"/>
                                     <Label Grid.Column="0" Grid.Row="1">Language: </Label>
-                                    <Label Grid.Row="1" Grid.Column="1" HorizontalAlignment="Right" Content="{Binding Language}"/>
+                                    <Label Grid.Row="1" Grid.Column="1" HorizontalAlignment="Right" Content="{Binding Language}"/>                                
                                 </Grid>
                         </materialDesign:PopupBox>
                         </Grid>
@@ -76,11 +76,5 @@
             <Button Command="{Binding RemoveItem}"  BorderBrush="#006db3" Background="#006db3" Height="auto" Grid.Row="1">Remove</Button>
             <Button Command="{Binding EditItem}" BorderBrush="#63ccff" Background="#63ccff" Height="auto" Grid.Row="2">Edit</Button>
         </Grid>
-        <StackPanel VerticalAlignment="Center" Grid.Column="2">
-            <TextBox TextAlignment="Center">Text input</TextBox>
-            <Button Command="{Binding MoreInfo}">Action1</Button>
-            <Button>Action2</Button>
-        </StackPanel>
-       
     </Grid>
 </Window>

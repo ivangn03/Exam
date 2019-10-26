@@ -30,7 +30,9 @@ namespace Exam.ViewModels
             FrameworkUIModels = repository.GetAll();
             AutoSave = new RelayCommand(x=> { repository.SaveAll();  });
             AddItem = new RelayCommand(x=> {
-                FrameworkUIModel framework = new FrameworkUIModel { Id = -1, Name = "", Language = "", ImageURL = "" };
+                FrameworkUIModel framework = new FrameworkUIModel { Name = "", Language = "", ImageURL = "" };           
+                SelectedItem = framework;  
+                new EditViewModel(SelectedItem);
                 repository.CreateOrUpdate(framework);
                 FrameworkUIModels.Add(framework);
             });
@@ -39,9 +41,15 @@ namespace Exam.ViewModels
                 FrameworkUIModels.Remove(SelectedItem);
             }, x=>FrameworkUIModels.Count > 0 && SelectedItem!=null);
             EditItem = new RelayCommand(x => {
-                //Open a new window. Coordinator?!
+                new EditViewModel(SelectedItem);
+                repository.CreateOrUpdate(SelectedItem);
             },  x=> SelectedItem !=null
             );
+            MainWindow mainWindow = new MainWindow
+            {
+                DataContext = this
+            };
+            mainWindow.ShowDialog();
         }
     }
 }

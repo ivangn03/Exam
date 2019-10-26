@@ -1,6 +1,9 @@
-﻿using DAL.Models;
+﻿using DAL.Context;
+using DAL.Models;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
+using System.Data.Entity.Migrations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,39 +11,43 @@ using System.Threading.Tasks;
 namespace DAL.Repositories
 {
     public class FrameworkRepository : IRepository<Framework>
-    {
-        List<Framework> frameworks;
+    {  
+        DbContext context;
+        IDbSet<Framework> dbSet;
         public FrameworkRepository()
         {
-            frameworks = Framework.GetFrameworks() as List<Framework>;
+            context = new FrameworkContext();
+            dbSet = context.Set<Framework>();           
         }
         public void CreateOrUpdate(Framework data)
         {
-            frameworks.Add(data);
-            //TODO throw new NotImplementedException();
+            dbSet.AddOrUpdate<Framework>(data);  
         }
 
         public Framework Delete(Framework data)
         {
-            frameworks.Remove(data);
+            dbSet.Remove(data);
             return data;
-            //TODO throw new NotImplementedException();
+            
         }
 
         public Framework Get(int id)
         {
-            return frameworks.FirstOrDefault(x => x.Id == id);
-            // throw new NotImplementedException();
+            return dbSet.Find(id);    
         }
 
         public IEnumerable<Framework> GetAll()
         {
-            return frameworks;
+            return dbSet;
         }
 
         public void SaveAll()
         {
-            //TODO
+            context.SaveChanges();
+        }
+        ~FrameworkRepository()
+        {
+            context.Dispose();
         }
     }
 }
