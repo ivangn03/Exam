@@ -17,12 +17,13 @@
         >
     <Grid>
         <StackPanel>
-            <Label>Framework</Label>
-            <TextBox Text="{Binding Framework.Name}"></TextBox>
-            <Label>Language</Label>
-            <TextBox Text="{Binding Framework.Language}"></TextBox>
-            <Label>ImageURL</Label>
-            <TextBox Text="{Binding Framework.ImageURL}"></TextBox>
+            <Label>Framework:</Label>
+            <TextBox Margin="20,0,0,0" Text="{Binding Framework.Name}"></TextBox>
+            <Label>Language:</Label>
+            <TextBox Margin="20,0,0,0" Text="{Binding Framework.Language}"></TextBox>
+            <Label>ImageURL:</Label>
+            <TextBox Margin="20,0,0,4" Text="{Binding Framework.ImageURL}"></TextBox>
+            <Button Command="{Binding BackToMain}" Background="#039be5">Return</Button>
         </StackPanel>
     </Grid>
 </Window>
