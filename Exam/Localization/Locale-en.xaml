@@ -1,0 +1,14 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:Exam.Localization"
+                    xmlns:system="clr-namespace:System;assembly=mscorlib"
+                    >
+
+    <system:String x:Key="Add">Add</system:String>
+    <system:String x:Key="Delete">Delete</system:String>
+    <system:String x:Key="Edit">Edit</system:String>
+    <system:String x:Key="Framework">Framework</system:String>
+    <system:String x:Key="Language">Language</system:String>
+    <system:String x:Key="ImageURL">ImageUrl</system:String>
+    <system:String x:Key="Return">Return</system:String>
+</ResourceDictionary>
