@@ -1,0 +1,8 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:Exam.Themes"
+                    >
+    <Brush x:Key="CreateColor">#039be5</Brush>
+    <Brush x:Key="RemoveColor">#006db3</Brush>
+    <Brush x:Key="EditColor">#63ccff</Brush>
+</ResourceDictionary>

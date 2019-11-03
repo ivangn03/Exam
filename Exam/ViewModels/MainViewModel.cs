@@ -4,9 +4,10 @@ using Exam.Infrastucture;
 using Exam.Models;
 using Exam.Repositories;
 using System;
+using System.Configuration;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Configuration;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,6 +19,7 @@ namespace Exam.ViewModels
     class MainViewModel
     {
         public String Locale { get; set; }
+        public String Theme { get; set; }
         public ObservableCollection<FrameworkUIModel> FrameworkUIModels { get; set; }
         public FrameworkUIModel SelectedItem { get; set; }
         #region Commands
@@ -26,6 +28,7 @@ namespace Exam.ViewModels
         public ICommand RemoveItem { get; set; }
         public ICommand EditItem { get; set; }
         public ICommand ChangeLanguage { get; set; }
+        public ICommand ChangeTheme { get; set; }
         #endregion
         public MainViewModel(IRepository<FrameworkUIModel> repository)
         {
@@ -47,10 +50,26 @@ namespace Exam.ViewModels
                 repository.CreateOrUpdate(SelectedItem);
             },  x=> SelectedItem !=null
             );
+            ChangeTheme = new RelayCommand(x => {
+                var theme = x as string;
+                var dictionary = new ResourceDictionary();
+                var configuration = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+
+                configuration.AppSettings.Settings["Theme"].Value = theme;
+                configuration.Save();
+                theme = string.IsNullOrEmpty(theme) ? "Default":theme;
+                dictionary.Source = new Uri("Themes/" + theme + ".xaml", UriKind.Relative);
+                Application.Current.Resources.MergedDictionaries[1] = dictionary;
+            });
             ChangeLanguage = new RelayCommand(x=> {
                 var language = x as string;
                 var dictionary = new ResourceDictionary();
-                language= language??"Locale-en";
+                var configuration = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+
+                configuration.AppSettings.Settings["Language"].Value = language;
+                configuration.Save();
+
+                language= string.IsNullOrEmpty(language)?"Locale-en": language;
                 Locale = language;
                 dictionary.Source = new Uri("Localization/"+language+".xaml", UriKind.Relative);
                 Application.Current.Resources.MergedDictionaries[0] = dictionary;
